@@ -1,0 +1,192 @@
+working on the scripting for the eRequisition multi requisition routing (on the originator page) 3 hour
+
+Originator 100
+APpprover 01 200
+Approver 02 300
+Approver 03 400
+Approver 04 500
+Approver 05 no limit just create a PO
+
+Originator 01: 
+Req No 1 Originator -> Approver 01 Create PO
+Req Req 2 Originator -> Approver 01 -> Approver 02 Create PO
+Req No 3 Originator -> Approver 01 -> Approver 02 Reject Req
+Req No 4 Originator -> Approver 01 -> Approver 02 -> Approver 03 Create PO
+Req No 5 Originator -> Approver 01 -> Approver 02 -> Approver 03 Cancelled Req
+Req No 6 Originator -> Approver 01 -> Approver 02 -> Approver 03 -> Approver 04 Rejected Req
+Req No 7 Originator -> Approver 01 -> Approver 02 -> Approver 03 -> Approver 04 Create PO
+Req No 8 Originator -> APR 01 -> APR 02 -> APR 03 -> APR 04 -> APR 05 Create PO
+Req No 9 Originator -> APR 01 -> APR 02 -> APR 03 -> APR 04 -> APR 05 Reject Req
+Req No 10 Originator Create PO 
+Req 11 -> Approver 02 -> Approver 03 Create PO
+
+Approver 01
+Req 1 Create PO
+Req 2 Approve 
+Req 3 Approve
+Req 4 Approve
+Req 5 approved
+Req 6 Approver
+Req 7 approver
+Req 8 Approver
+Req 9 approver
+
+Approver 02
+
+Req 2 Create PO
+Req 3 Rejected
+Req 4 Approve
+Req 5 approved
+Req 6 Approver
+Req 7 approver
+Req 8 Approver
+Req 9 approver
+Req 11 Submit
+
+Approver 03
+
+Req 4 Create PO
+Req 5 Cancelled Req
+Req 6 Approver
+Req 7 approver
+Req 8 Approver
+Req 9 approver
+Req 11 Create PO
+
+Approver 04
+
+Req 6 Rejected Req
+Req 7 Create PO
+Req 8 Approver
+Req 9 approver
+
+Approver 05
+Req 8 Create PO
+Req 9 Reject
+
+
+REQ of Originator -> PO NO Sequence with Respect to the Req NO
+1: PONO 01 -> reqNO 10  (Create by Originator)
+2: PONO 02 -> reqNO 1    (Created By Approver 01)
+3: PONO 03 -> reqNO 2 (Create By Approver 02)
+4: PONO 04 -> req 4 (Create By Approver 03)
+5: PONO 05 -> req 11 (Create By Approver 03)
+6: PONO 06 -> req 7 (Create By Approver 04)
+7: PONO 07 -> req 8 (Created By Approver 05)
+
+REQ of Originator -> Reject NO Sequence with Respect to the Req NO
+1: req 3 -> Rejected By Approver 02
+2: req 6 -> Rejected By Approver 04
+3: Req 9 -> Rejected By Approver 05
+
+
+REQ of Originator -> Cancelled NO Sequence with Respect to the Req NO
+1: req 5 -> Cancelled By Approver 03
+
+
+
+Items Selected with Respect to the Req NO
+REQNO 1
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 1));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 5));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 9));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 13));
+
+REQNO 2
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 1));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 5));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 9));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 13));
+
+REQNO 3
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 1));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 5));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 9));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 13));
+
+REQNO 4
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 2));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 6));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 10));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 14));
+
+REQNO 5
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 2));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 6));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 10));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 14));
+
+ReqNO 6
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 3));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 7));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 11));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 15));
+
+ReqNO 7
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 3));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 7));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 11));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 15));
+
+
+ReqNO 8
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 4));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 8));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 12));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 16));
+
+ReqNO 9
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 4));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 8));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 12));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 16));
+
+ReqNO 10
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 4));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 8));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 12));
+RPF.select_the_items(ScenarioContext.get(Apps + "ItemsName" + 16));
+
+
+REQNO SET and Req total amount
+SetReqNoandtotalamountWithRespectToTheReqSeqenceCreation(String CreationofReqNo, String ReqNO,String ReqTotalAmount) {
+ScenarioContext.put( "ReqNumber"+CreationofReqNo , ReqNO);
+ScenarioContext.put( "TotalAmountOfReq"+CreationofReqNo , ReqTotalAmount);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
